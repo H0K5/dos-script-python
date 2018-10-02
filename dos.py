@@ -39,7 +39,7 @@ def TakeDown(host="",port=80):
                         print "Error while sending!"
                         sys.exit()
     except:
-        print socket.getHostname()
+        print socket.gethostname()
         
                         
 if __name__=="__main__":
