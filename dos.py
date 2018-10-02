@@ -13,8 +13,10 @@ def UserAgent():
     File=open("UserAgent.txt","r")   #your path
     for line in File:
         userAg.append(line)
+    File.close()
     return userAg
-
+    
+    
 def TakeDown(host="",port=80):
     try:
         sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
