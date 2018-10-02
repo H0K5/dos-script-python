@@ -1,6 +1,3 @@
-#Demonstration of a Denial of service attack.
-#Email: khanhnn@pythonvietnam.info
-
 import threading
 import socket
 import random
